@@ -27,7 +27,7 @@ namespace MatchWorthWatchingService
 			//then send out a tweet about it
 			//once the tweet is sent, update our DB to show that that match was processed and sent
 			//
-			// Levels of interesting - Very Boring, Boring, Not Interesting, Interesting, Interesting if you're a fan of X team, Very Interesting
+			// Levels of interesting - Very Boring, Boring, Interesting, Interesting if you're a fan of X team, Very Interesting
 			//
 			//what makes a match interesting?
 			//  goals-more = more interesting

@@ -1,0 +1,3 @@
+C:\Users\Jeremy\Documents\GitHub\MatchesWorthWatching\MatchWorthWatchingService\bin\Debug\MatchWorthWatchingService.exe.config
+C:\Users\Jeremy\Documents\GitHub\MatchesWorthWatching\MatchWorthWatchingService\obj\Debug\MatchWorthWatchingService.exe
+C:\Users\Jeremy\Documents\GitHub\MatchesWorthWatching\MatchWorthWatchingService\obj\Debug\MatchWorthWatchingService.pdb
