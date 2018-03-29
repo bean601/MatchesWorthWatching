@@ -54,7 +54,7 @@ namespace MatchInterestCalculator
 
 		private InterestLevel CalculateTotalScoreInterest(MatchStatsEntity match)
 		{
-			var interest = InterestLevel.Interesting;
+			var interest = InterestLevel.VeryBoring;
 
 			if (match.HomeScore + match.AwayScore >= 7)
 			{
@@ -68,25 +68,21 @@ namespace MatchInterestCalculator
 			{
 				interest = InterestLevel.Boring;
 			}
-			else if (match.HomeScore + match.AwayScore == 0)
-			{
-				interest = InterestLevel.VeryBoring;
-			}
 
 			return interest;
 		}
 
 		private InterestLevel CalculateRedCardInterest(MatchStatsEntity match)
 		{
-			var interest = InterestLevel.Unknown;
+			var interest = InterestLevel.VeryBoring;
 
-			if (match.HomeRedCards + match.AwayRedCards > 1)
-			{
-				interest = InterestLevel.Interesting;
-			}
-			else if (match.HomeRedCards + match.AwayRedCards > 2)
+			if (match.HomeRedCards + match.AwayRedCards > 2)
 			{
 				interest = InterestLevel.Exciting;
+			}
+			else if (match.HomeRedCards + match.AwayRedCards > 1)
+			{
+				interest = InterestLevel.Interesting;
 			}
 
 			return interest;
@@ -94,28 +90,53 @@ namespace MatchInterestCalculator
 
 		private InterestLevel CalculateShotsOnGoalInterest(MatchStatsEntity match)
 		{
-			var interest = InterestLevel.Unknown;
+			var interest = InterestLevel.VeryBoring;
 
-			if (match.HomeShotsOnGoal > 3)
+			if (match.HomeShotsOnGoal > 10 || match.AwayShotsOnGoal > 10)
+			{
+				interest = InterestLevel.Exciting;
+			}
+			else if (match.HomeShotsOnGoal > 6 || match.AwayShotsOnGoal > 6)
+			{
+				interest = InterestLevel.Interesting;
+			}
+			else if (match.HomeShotsOnGoal > 2 || match.AwayShotsOnGoal > 2)
 			{
 				interest = InterestLevel.Boring;
 			}
-
 
 			return interest;
 		}
 
 		private InterestLevel CalculateShotsInterest(MatchStatsEntity match)
 		{
-			var interest = InterestLevel.Unknown;
+			var interest = InterestLevel.VeryBoring;
+
+			if (match.HomeShots > 20 || match.AwayShots > 20)
+			{
+				interest = InterestLevel.Exciting;
+			}
+			else if (match.HomeShots > 16 || match.AwayShots > 16)
+			{
+				interest = InterestLevel.Interesting;
+			}
+			else if (match.HomeShots > 4 || match.AwayShots > 4)
+			{
+				interest = InterestLevel.Boring;
+			}
 
 			return interest;
 		}
 
+		//TODO: not sure how much this impacts interest... revisit this
 		private InterestLevel CalculatePossessionInterest(MatchStatsEntity match)
 		{
-			var interest = InterestLevel.Unknown;
+			var interest = InterestLevel.VeryBoring;
 
+			if (match.HomePossesion > 80 || match.AwayPossesion > 80)
+			{
+				interest = InterestLevel.Exciting;
+			}
 
 			return interest;
 		}

@@ -8,7 +8,7 @@ namespace MatchWorthWatchingService.DAL
 	{
 		DateTime GetLastMatchCheckTime();
 		IEnumerable<MatchEntity> GetMatchesToCheck();
-		void UpdateMatchTwitterStatus(int matchId, bool tweetSent);
+		void UpdateMatchTwitterStatus(int matchId, bool tweetSent, InterestLevel matchInterest);
 		void PersistMatchesToDatabase(IEnumerable<MatchEntity> matches);
 	}
 }

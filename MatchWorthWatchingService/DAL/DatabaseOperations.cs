@@ -46,16 +46,17 @@ namespace MatchWorthWatchingService.DAL
 			return matches;
 		}
 
-		public void UpdateMatchTwitterStatus(int matchId, bool tweetSent)
+		public void UpdateMatchTwitterStatus(int matchId, bool tweetSent, InterestLevel matchInterest)
 		{
 			var connection = new SQLiteConnection(GetDbConnectionString());
 			connection.Open();
 
-			var sql = @"update matches set tweetSent = @tweetSent where matchId = @matchId;";
+			var sql = @"update matches set tweetSent = @tweetSent, interestLevel = @matchInterest where matchId = @matchId;";
 			var command = new SQLiteCommand(sql, connection);
 
 			command.Parameters.AddWithValue("matchId", matchId);
 			command.Parameters.AddWithValue("tweetSent", tweetSent);
+			command.Parameters.AddWithValue("matchInterest", matchInterest.ToString());
 
 			command.ExecuteNonQuery();
 		}

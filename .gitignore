@@ -57,3 +57,6 @@ Docs/MatchInterestMatrix.xlsx
 *.exe
 *.pdb
 MatchWorthWatchingService/App.config
+*.dll
+MatchWorthWatchingService/App.config
+*.pdb

@@ -29,8 +29,7 @@ namespace MatchWorthWatchingService.WorkflowSteps
 			{
 				_logger.LogMessage(string.Format("{0} execution started - {1}", this.GetType().Name, DateTime.Now));
 
-				_database.UpdateMatchTwitterStatus(processedMatch.Match.MatchId,
-					processedMatch.Match.TweetSent);
+				_database.UpdateMatchTwitterStatus(processedMatch.Match.MatchId, processedMatch.Match.TweetSent, processedMatch.MatchInterest);
 
 				_logger.LogMessage(string.Format("{0} finished successfully - {1}", this.GetType().Name, DateTime.Now));
 			}
