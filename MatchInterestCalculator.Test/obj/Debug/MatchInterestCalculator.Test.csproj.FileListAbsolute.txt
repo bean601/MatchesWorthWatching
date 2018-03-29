@@ -1,0 +1,9 @@
+C:\Users\Jeremy\Documents\GitHub\MatchesWorthWatching\MatchInterestCalculator.Test\bin\Debug\MatchInterestCalculator.Test.dll
+C:\Users\Jeremy\Documents\GitHub\MatchesWorthWatching\MatchInterestCalculator.Test\bin\Debug\MatchInterestCalculator.Test.pdb
+C:\Users\Jeremy\Documents\GitHub\MatchesWorthWatching\MatchInterestCalculator.Test\obj\Debug\MatchInterestCalculator.Test.csprojResolveAssemblyReference.cache
+C:\Users\Jeremy\Documents\GitHub\MatchesWorthWatching\MatchInterestCalculator.Test\obj\Debug\MatchInterestCalculator.Test.dll
+C:\Users\Jeremy\Documents\GitHub\MatchesWorthWatching\MatchInterestCalculator.Test\obj\Debug\MatchInterestCalculator.Test.pdb
+C:\Users\Jeremy\Documents\GitHub\MatchesWorthWatching\MatchInterestCalculator.Test\bin\Debug\MatchesWorthWatching.Common.dll
+C:\Users\Jeremy\Documents\GitHub\MatchesWorthWatching\MatchInterestCalculator.Test\bin\Debug\MatchInterestCalculator.dll
+C:\Users\Jeremy\Documents\GitHub\MatchesWorthWatching\MatchInterestCalculator.Test\bin\Debug\MatchesWorthWatching.Common.pdb
+C:\Users\Jeremy\Documents\GitHub\MatchesWorthWatching\MatchInterestCalculator.Test\bin\Debug\MatchInterestCalculator.pdb

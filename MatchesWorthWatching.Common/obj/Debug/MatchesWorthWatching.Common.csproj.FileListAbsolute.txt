@@ -1,0 +1,5 @@
+C:\Users\Jeremy\Documents\GitHub\MatchesWorthWatching\MatchesWorthWatching.Common\bin\Debug\MatchesWorthWatching.Common.dll
+C:\Users\Jeremy\Documents\GitHub\MatchesWorthWatching\MatchesWorthWatching.Common\bin\Debug\MatchesWorthWatching.Common.pdb
+C:\Users\Jeremy\Documents\GitHub\MatchesWorthWatching\MatchesWorthWatching.Common\obj\Debug\MatchesWorthWatching.Common.csprojResolveAssemblyReference.cache
+C:\Users\Jeremy\Documents\GitHub\MatchesWorthWatching\MatchesWorthWatching.Common\obj\Debug\MatchesWorthWatching.Common.dll
+C:\Users\Jeremy\Documents\GitHub\MatchesWorthWatching\MatchesWorthWatching.Common\obj\Debug\MatchesWorthWatching.Common.pdb

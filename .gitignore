@@ -45,3 +45,15 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+Docs/Todo.txt
+*.xlsx
+Docs/MatchInterestMatrix.xlsx
+matches.db
+MatchWorthWatchingService/App.config
+MatchWorthWatchingService/App.config
+Docs/MatchInterestMatrix.xlsx
+Docs/MatchInterestMatrix.xlsx
+*.pdb
+*.exe
+*.pdb
+MatchWorthWatchingService/App.config
