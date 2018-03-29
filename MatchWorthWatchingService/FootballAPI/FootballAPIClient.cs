@@ -27,61 +27,41 @@ namespace MatchWorthWatchingService.FootballAPI
 		{
 			var match = new MatchContract();
 
-			var client = new RestClient(GetAPIEndpoint());
 			var request = new RestRequest("matches/{matchId}?Authorization={authToken}", Method.GET);
-			request.AddParameter("authToken", GetAuthToken(), ParameterType.UrlSegment);
 			request.AddParameter("matchId", matchId, ParameterType.UrlSegment);
 
-			var response = client.Execute(request);
-
-			if (response.StatusCode != System.Net.HttpStatusCode.NotFound)
-			{
-				var deserializedResponse = new RestResponse
-				{
-					Content = response.Content
-				};
-
-				match = new JsonDeserializer().Deserialize<MatchContract>(deserializedResponse);
-			}
-
-			return match;
+			return ExecuteCall<MatchContract>(request);
 		}
 
 		public List<MatchContract> GetMatches(int competitionId, string startDate, string endDate)
 		{
 			var matches = new List<MatchContract>();
 
-			var client = new RestClient(GetAPIEndpoint());
 			var request = new RestRequest("matches?Authorization={authToken}", Method.GET);
-			request.AddParameter("authToken", GetAuthToken(), ParameterType.UrlSegment);
 			request.AddParameter("comp_id", competitionId);
 			request.AddParameter("from_date", startDate);
 			request.AddParameter("to_date", endDate);
 
-			var response = client.Execute(request);
-
-			if (response.StatusCode != System.Net.HttpStatusCode.NotFound)
-			{
-				var deserializedResponse = new RestResponse
-				{
-					Content = response.Content
-				};
-
-				matches = new JsonDeserializer().Deserialize<List<MatchContract>>(deserializedResponse);
-			}
-
-			return matches;
+			return ExecuteCall<List<MatchContract>>(request);
 		}
 
 		public MatchCommentaryContract GetMatchCommentary(int competitionId, int matchId)
 		{
 			var matchCommentary = new MatchCommentaryContract();
 
-			var client = new RestClient(GetAPIEndpoint());
 			var request = new RestRequest("commentaries/{matchId}?Authorization={authToken}", Method.GET);
-			request.AddParameter("authToken", GetAuthToken(), ParameterType.UrlSegment);
 			request.AddParameter("matchId", matchId, ParameterType.UrlSegment);
 			request.AddParameter("comp_id", competitionId);
+
+			return ExecuteCall<MatchCommentaryContract>(request);
+		}
+
+		private T ExecuteCall<T>(RestRequest request)
+		{
+			var client = new RestClient(GetAPIEndpoint());
+			var returnObject = default(T);
+
+			request.AddParameter("authToken", GetAuthToken(), ParameterType.UrlSegment);
 
 			var response = client.Execute(request);
 
@@ -92,10 +72,10 @@ namespace MatchWorthWatchingService.FootballAPI
 					Content = response.Content
 				};
 
-				matchCommentary = new JsonDeserializer().Deserialize<MatchCommentaryContract>(deserializedResponse);
+				returnObject = new JsonDeserializer().Deserialize<T>(deserializedResponse);
 			}
 
-			return matchCommentary;
+			return returnObject;
 		}
 	}
 }
