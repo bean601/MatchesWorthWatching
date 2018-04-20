@@ -68,13 +68,14 @@ namespace MatchWorthWatchingService
 
 				if (sessionValues.LastCheckedDate.Day != DateTime.Now.Day)
 				{
-					sessionValues.MatchWindowStartDate = DateTime.Now.AddDays(-2); //TODO: set for lastCheckedDate after testing
+					sessionValues.MatchWindowStartDate = DateTime.Now.AddDays(-130); //TODO: set for lastCheckedDate after testing
 					sessionValues.MatchWindowEndDate = DateTime.Now;
 
 					sessionValues.MatchesToProcess = getMatchesFromAPIStep.Execute(sessionValues.CompetitionId, sessionValues.MatchWindowStartDate, sessionValues.MatchWindowEndDate);
 
 					if (sessionValues.MatchesToProcess != null && sessionValues.MatchesToProcess.Any())
 					{
+						//TODO: if this fails we need to stop processing
 						persistMatchesToDatabaseStep.Execute(sessionValues.MatchesToProcess);
 					}
 				}
@@ -98,6 +99,7 @@ namespace MatchWorthWatchingService
 				{
 					foreach (var match in sessionValues.MatchesToProcess)
 					{
+						//TODO: if we've already figured out the interest, only try to send the tweet
 						var matchInProcess = new ProcessedMatchEntity { Match = match };
 
 						//all to just get the full time score...

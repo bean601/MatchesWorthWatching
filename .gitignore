@@ -60,3 +60,10 @@ MatchWorthWatchingService/App.config
 *.dll
 MatchWorthWatchingService/App.config
 *.pdb
+*.user
+*.suo
+*.config
+*.exe
+*.exe
+MatchWorthWatchingService/obj/Debug/MatchWorthWatchingService.pdb
+*.exe

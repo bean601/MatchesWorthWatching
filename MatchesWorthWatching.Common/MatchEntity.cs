@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace MatchWorthWatchingService.Common
 {
 	/// <summary>
-	/// competitionID int|matchID int|homeTeam string|awayTeam string|startDate dateTime|season? string|tweetSent bool
+	/// competitionID int|matchID int|homeTeam string|awayTeam string|startDate dateTime|season? string|tweetSent bool|InterestLevel string
 	/// </summary>
 	public class MatchEntity
 	{
@@ -19,5 +19,6 @@ namespace MatchWorthWatchingService.Common
 		public string Season { get; set; }
 		public bool TweetSent { get; set; }
 		public string Score { get; set; }
+		public string InterestLevel { get; set; }
 	}
 }
