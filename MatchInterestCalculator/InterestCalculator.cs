@@ -1,4 +1,5 @@
-﻿using MatchWorthWatchingService.Common;
+﻿using MatchesWorthWatching.Common;
+using MatchWorthWatchingService.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;

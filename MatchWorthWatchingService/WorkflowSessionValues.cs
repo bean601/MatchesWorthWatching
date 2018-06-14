@@ -10,11 +10,6 @@ namespace MatchWorthWatchingService
 {
 	public class WorkflowSessionValues
 	{
-		public WorkflowSessionValues()
-		{
-
-		}
-
 		/// <summary>
 		/// The current league's competitionId.  This will become more important when more leagues are supported, make it more flexible in the future
 		/// </summary>
@@ -61,6 +56,5 @@ namespace MatchWorthWatchingService
 		/// Value to determine if we need to stop processing completely
 		/// </summary>
 		public bool ContinueProcessing { get; set; }
-
 	}
 }

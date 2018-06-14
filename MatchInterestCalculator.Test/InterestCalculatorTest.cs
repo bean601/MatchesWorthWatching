@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MatchWorthWatchingService.Common;
+using MatchesWorthWatching.Common;
 
 namespace MatchInterestCalculator.Test
 {

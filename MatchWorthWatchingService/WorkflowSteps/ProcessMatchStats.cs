@@ -1,4 +1,5 @@
-﻿using MatchInterestCalculator;
+﻿using MatchesWorthWatching.Common;
+using MatchInterestCalculator;
 using MatchWorthWatchingService.Common;
 using MatchWorthWatchingService.Logging;
 using System;

@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IInterestCalculator.cs" />
     <Compile Include="InterestLevel.cs" />
     <Compile Include="MatchEntity.cs" />
     <Compile Include="MatchStatsEntity.cs" />

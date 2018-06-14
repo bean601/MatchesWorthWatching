@@ -65,7 +65,7 @@ namespace MatchWorthWatchingService.FootballAPI
 
 			var response = client.Execute(request);
 
-			if (response.StatusCode != System.Net.HttpStatusCode.NotFound)
+			if (response.StatusCode == System.Net.HttpStatusCode.OK)
 			{
 				var deserializedResponse = new RestResponse
 				{

@@ -67,3 +67,4 @@ MatchWorthWatchingService/App.config
 *.exe
 MatchWorthWatchingService/obj/Debug/MatchWorthWatchingService.pdb
 *.exe
+*.dll

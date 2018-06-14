@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MatchInterestCalculator;
+using MatchesWorthWatching.Common;
 
 namespace MatchWorthWatchingService
 {
@@ -21,6 +22,17 @@ namespace MatchWorthWatchingService
 		private IDatabaseOperations _database;
 		private ITweetBuilder _tweetBuilder;
 		private IInterestCalculator _interestCalculator;
+
+		private GetMatchScoreFromAPI _getMatchScoreFromAPIStep;
+		private GetLastMatchCheckTimeFromDatabase _getLastMatchCheckTimeStep;
+		private BuildMatchTweet _buildMatchTweetStep;
+		private GetMatchesFromAPI _getMatchesFromAPIStep;
+		private GetMatchesToSearchFromDatabase _getMatchesToSearchFromDatabaseStep;
+		private GetMatchStatsFromAPI _getMatchStatsFromAPIStep;
+		private PersistMatchesToDatabase _persistMatchesToDatabaseStep;
+		private ProcessMatchStats _processMatchStatsStep;
+		private SendMatchTweet _sendMatchTweetStep;
+		private UpdateMatchTwitterStatus _updateMatchTwitterStatusStep;
 
 		public Workflow(ILogger logger,
 			ITwitterService twitterService,
@@ -35,11 +47,26 @@ namespace MatchWorthWatchingService
 			_database = database;
 			_tweetBuilder = tweetBuilder;
 			_interestCalculator = interestCalculator;
+
+			_getMatchScoreFromAPIStep = new GetMatchScoreFromAPI(_logger, _footballAPI);
+			_getLastMatchCheckTimeStep = new GetLastMatchCheckTimeFromDatabase(_logger, _database);
+			_buildMatchTweetStep = new BuildMatchTweet(_logger, _tweetBuilder);
+			_getMatchesFromAPIStep = new GetMatchesFromAPI(_logger, _footballAPI);
+			_getMatchesToSearchFromDatabaseStep = new GetMatchesToSearchFromDatabase(_logger, _database);
+			_getMatchStatsFromAPIStep = new GetMatchStatsFromAPI(_logger, _footballAPI);
+			_persistMatchesToDatabaseStep = new PersistMatchesToDatabase(_logger, _database);
+			_processMatchStatsStep = new ProcessMatchStats(_logger, _interestCalculator);
+			_sendMatchTweetStep = new SendMatchTweet(_logger, _twitterService);
+			_updateMatchTwitterStatusStep = new UpdateMatchTwitterStatus(_logger, _database);
 		}
 
 		public void Execute()
 		{
-			if (_logger != null && _twitterService != null && _footballAPI != null && _database != null && _tweetBuilder != null)
+			if (_logger != null
+				&& _twitterService != null
+				&& _footballAPI != null
+				&& _database != null
+				&& _tweetBuilder != null)
 			{
 				_logger.LogMessage(string.Format("Processing started on {0}", DateTime.Now));
 
@@ -48,40 +75,24 @@ namespace MatchWorthWatchingService
 				sessionValues.ProcessedMatches = new List<ProcessedMatchEntity>(); //TODO: move this to the session value getter, changed during debug
 				sessionValues.MatchesToProcess = new Queue<MatchEntity>();
 
-				var getMatchScoreFromAPIStep = new GetMatchScoreFromAPI(_logger, _footballAPI);
-				var getLastMatchCheckTimeStep = new GetLastMatchCheckTimeFromDatabase(_logger, _database);
-				var buildMatchTweetStep = new BuildMatchTweet(_logger, _tweetBuilder);
-				var getMatchesFromAPIStep = new GetMatchesFromAPI(_logger, _footballAPI);
-				var getMatchesToSearchFromDatabaseStep = new GetMatchesToSearchFromDatabase(_logger, _database);
-				var getMatchStatsFromAPIStep = new GetMatchStatsFromAPI(_logger, _footballAPI);
-				var persistMatchesToDatabaseStep = new PersistMatchesToDatabase(_logger, _database);
-				var processMatchStatsStep = new ProcessMatchStats(_logger, _interestCalculator);
-				//var searchTwitterStep = new SearchTwitterStep(logger, twitterService);  //TODO: implement this later
-
-				var sendMatchTweetStep = new SendMatchTweet(_logger, _twitterService);
-				var updateMatchTwitterStatusStep = new UpdateMatchTwitterStatus(_logger, _database);
-
-				//TODO: just getting it working in a messy way then will refactor around a list of steps concept with a managing class
-				//TODO: get rid of passing around sessionValues like this
-
-				sessionValues.LastCheckedDate = getLastMatchCheckTimeStep.Execute();
+				sessionValues.LastCheckedDate = _getLastMatchCheckTimeStep.Execute();
 
 				if (sessionValues.LastCheckedDate.Day != DateTime.Now.Day)
 				{
 					sessionValues.MatchWindowStartDate = DateTime.Now.AddDays(-130); //TODO: set for lastCheckedDate after testing
 					sessionValues.MatchWindowEndDate = DateTime.Now;
 
-					sessionValues.MatchesToProcess = getMatchesFromAPIStep.Execute(sessionValues.CompetitionId, sessionValues.MatchWindowStartDate, sessionValues.MatchWindowEndDate);
+					sessionValues.MatchesToProcess = _getMatchesFromAPIStep.Execute(sessionValues.CompetitionId, sessionValues.MatchWindowStartDate, sessionValues.MatchWindowEndDate);
 
 					if (sessionValues.MatchesToProcess != null && sessionValues.MatchesToProcess.Any())
 					{
 						//TODO: if this fails we need to stop processing
-						persistMatchesToDatabaseStep.Execute(sessionValues.MatchesToProcess);
+						_persistMatchesToDatabaseStep.Execute(sessionValues.MatchesToProcess);
 					}
 				}
 
 				//get matches that are before our search window but we haven't sent tweets for yet
-				var matchesFromDB = getMatchesToSearchFromDatabaseStep.Execute();
+				var matchesFromDB = _getMatchesToSearchFromDatabaseStep.Execute();
 
 				if (matchesFromDB != null && matchesFromDB.Any())
 				{
@@ -103,25 +114,25 @@ namespace MatchWorthWatchingService
 						var matchInProcess = new ProcessedMatchEntity { Match = match };
 
 						//all to just get the full time score...
-						matchInProcess.Match = getMatchScoreFromAPIStep.Execute(match);
+						matchInProcess.Match = _getMatchScoreFromAPIStep.Execute(match);
 
 						if (matchInProcess.Match.Score != null)
 						{
-							matchInProcess.MatchStats = getMatchStatsFromAPIStep.Execute(match);
+							matchInProcess.MatchStats = _getMatchStatsFromAPIStep.Execute(match);
 
 							if (matchInProcess.MatchStats != null)
 							{
-								matchInProcess.MatchInterest = processMatchStatsStep.Execute(matchInProcess.MatchStats);
+								matchInProcess.MatchInterest = _processMatchStatsStep.Execute(matchInProcess.MatchStats);
 
 								if (matchInProcess.MatchInterest != InterestLevel.Unknown)
 								{
-									matchInProcess.Tweet = buildMatchTweetStep.Execute(matchInProcess);
+									matchInProcess.Tweet = _buildMatchTweetStep.Execute(matchInProcess);
 
 									if (!string.IsNullOrEmpty(matchInProcess.Tweet))
 									{
-										if (sendMatchTweetStep.Execute(matchInProcess))
+										if (_sendMatchTweetStep.Execute(matchInProcess))
 										{
-											updateMatchTwitterStatusStep.Execute(matchInProcess);
+											_updateMatchTwitterStatusStep.Execute(matchInProcess);
 										}
 									}
 								}
