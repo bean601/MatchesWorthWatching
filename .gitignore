@@ -68,3 +68,11 @@ MatchWorthWatchingService/App.config
 MatchWorthWatchingService/obj/Debug/MatchWorthWatchingService.pdb
 *.exe
 *.dll
+/MatchWorthWatchingService/obj/Debug/build.force
+/MatchWorthWatchingService/obj/Debug/MatchesWorthWatchingService.csproj.CoreCompileInputs.cache
+/MatchWorthWatchingService/obj/Debug/MatchesWorthWatchingService.csprojAssemblyReference.cache
+/MatchInterestCalculator.Test/obj/Debug
+/MatchInterestCalculator/obj/Debug
+/MatchesWorthWatchingService.Test/obj/Debug
+/MatchesWorthWatching.Common/obj/Debug
+/.vs/MatchesWorthWatchingService/v15/Server/sqlite3

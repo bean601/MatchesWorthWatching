@@ -1,0 +1,6 @@
+﻿Use some DI framework
+Clean up workflow class
+Connect Twitter
+Clean up gitignore file
+Finish interest calculator
+More tests!
