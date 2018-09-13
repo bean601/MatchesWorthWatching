@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchesWorthWatchingService", "MatchWorthWatchingService\MatchesWorthWatchingService.csproj", "{2259B874-6899-4A37-BCD1-41567D863777}"
 EndProject
@@ -12,6 +12,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchesWorthWatchingService.Test", "MatchesWorthWatchingService.Test\MatchesWorthWatchingService.Test.csproj", "{AC50D8D7-03E8-4286-A4F5-27196EC0AF8B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchesWorthWatching.Common", "MatchesWorthWatching.Common\MatchesWorthWatching.Common.csproj", "{E82C898B-9DA3-4C11-9C49-8CB38B5F406A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{37379572-ADD6-4420-B975-1FCE81F6A778}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,5 +47,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {46DAD133-BAC6-4079-8966-2E78793C6FB7}
 	EndGlobalSection
 EndGlobal

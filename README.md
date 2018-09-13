@@ -41,3 +41,4 @@ Project to determine if a soccer match is worth watching (project just for fun, 
 - Finish interest calculator
 - More tests!
 - Add a UI
+- Update referenced pacakges, some are getting out of date
