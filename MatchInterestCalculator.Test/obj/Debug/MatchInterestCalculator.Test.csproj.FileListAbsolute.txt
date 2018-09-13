@@ -7,3 +7,15 @@ C:\Users\Jeremy\Documents\GitHub\MatchesWorthWatching\MatchInterestCalculator.Te
 C:\Users\Jeremy\Documents\GitHub\MatchesWorthWatching\MatchInterestCalculator.Test\bin\Debug\MatchInterestCalculator.dll
 C:\Users\Jeremy\Documents\GitHub\MatchesWorthWatching\MatchInterestCalculator.Test\bin\Debug\MatchesWorthWatching.Common.pdb
 C:\Users\Jeremy\Documents\GitHub\MatchesWorthWatching\MatchInterestCalculator.Test\bin\Debug\MatchInterestCalculator.pdb
+C:\Dev\GitHub\MatchesWorthWatching\MatchInterestCalculator.Test\bin\Debug\MatchInterestCalculator.Test.dll
+C:\Dev\GitHub\MatchesWorthWatching\MatchInterestCalculator.Test\bin\Debug\MatchInterestCalculator.Test.pdb
+C:\Dev\GitHub\MatchesWorthWatching\MatchInterestCalculator.Test\bin\Debug\MatchesWorthWatching.Common.dll
+C:\Dev\GitHub\MatchesWorthWatching\MatchInterestCalculator.Test\bin\Debug\MatchInterestCalculator.dll
+C:\Dev\GitHub\MatchesWorthWatching\MatchInterestCalculator.Test\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Dev\GitHub\MatchesWorthWatching\MatchInterestCalculator.Test\bin\Debug\MatchesWorthWatching.Common.pdb
+C:\Dev\GitHub\MatchesWorthWatching\MatchInterestCalculator.Test\bin\Debug\MatchInterestCalculator.pdb
+C:\Dev\GitHub\MatchesWorthWatching\MatchInterestCalculator.Test\obj\Debug\MatchInterestCalculator.Test.csprojAssemblyReference.cache
+C:\Dev\GitHub\MatchesWorthWatching\MatchInterestCalculator.Test\obj\Debug\MatchInterestCalculator.Test.csproj.CoreCompileInputs.cache
+C:\Dev\GitHub\MatchesWorthWatching\MatchInterestCalculator.Test\obj\Debug\MatchInterestCalculator.Test.csproj.CopyComplete
+C:\Dev\GitHub\MatchesWorthWatching\MatchInterestCalculator.Test\obj\Debug\MatchInterestCalculator.Test.dll
+C:\Dev\GitHub\MatchesWorthWatching\MatchInterestCalculator.Test\obj\Debug\MatchInterestCalculator.Test.pdb
