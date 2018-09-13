@@ -62,3 +62,4 @@ Release/
 TestResult.xml
 packages/
 .vs/
+obj/Debug
