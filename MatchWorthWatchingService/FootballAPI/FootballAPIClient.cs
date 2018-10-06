@@ -1,12 +1,7 @@
 ﻿using MatchWorthWatchingService.FootballAPI.Contracts;
 using RestSharp;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Configuration;
-using MatchWorthWatchingService.Common;
 using RestSharp.Deserializers;
 
 namespace MatchWorthWatchingService.FootballAPI

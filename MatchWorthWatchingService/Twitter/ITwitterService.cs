@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MatchWorthWatchingService.Twitter
+﻿namespace MatchWorthWatchingService.Twitter
 {
 	/// <summary>
 	/// Defines the Twitter interactions we will support

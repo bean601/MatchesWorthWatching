@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SQLite;
-using System.Data.SQLite.Generic;
 using Dapper;
 
 namespace MatchWorthWatchingService.DAL

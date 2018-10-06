@@ -1,5 +1,4 @@
 ﻿using MatchWorthWatchingService.Common;
-using System;
 
 namespace MatchWorthWatchingService.Twitter
 {
