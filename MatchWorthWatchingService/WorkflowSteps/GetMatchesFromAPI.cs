@@ -31,26 +31,24 @@ namespace MatchWorthWatchingService.WorkflowSteps
 					startDate.ToShortDateString(),
 					endDate.ToShortDateString());
 
-				if (matchesForTheDay != null && matchesForTheDay.Any())
+				if (matchesForTheDay?.Any() == true)
 				{
 					matchesToProcess = new Queue<MatchEntity>();
 				}
 
-				//TODO: implementing a better mapper
-				foreach (var match in matchesForTheDay)
-				{
+				matchesForTheDay.ForEach(match =>
 					matchesToProcess.Enqueue(new MatchEntity
-						{
-							CompetitionId = competitionId,
-							HomeTeam = match.localteam_name,
-							AwayTeam = match.visitorteam_name,
-							MatchId = match.id,
-							Season = match.season,
-							StartTime = StringHelpers.CombineUKFormattedDateWithTime(match.formatted_date, match.time),
-							TweetSent = false,
-							Score = match.ft_score //can be null if the match hasn't ended up the commentary API doesn't have score for some reason
-						});
-				}
+					{
+						CompetitionId = competitionId,
+						HomeTeam = match.localteam_name,
+						AwayTeam = match.visitorteam_name,
+						MatchId = match.id,
+						Season = match.season,
+						StartTime = StringHelpers.CombineUKFormattedDateWithTime(match.formatted_date, match.time),
+						TweetSent = false,
+						Score = match.ft_score //can be null if the match hasn't ended up the commentary API doesn't have score for some reason
+					})
+				);
 
 				_logger.LogMessage(string.Format("API for day's matches successfully called returning {0} matches - {1}", matchesToProcess != null ? matchesToProcess.Count : 0, DateTime.Now));
 				_logger.LogMessage(string.Format("{0} finished successfully - {1}", this.GetType().Name, DateTime.Now));

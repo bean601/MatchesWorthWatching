@@ -102,7 +102,6 @@ namespace MatchWorthWatchingService
 					}
 				}
 
-				//TODO: remove nesting
 				if (sessionValues != null && sessionValues.MatchesToProcess.Any())
 				{
 					foreach (var match in sessionValues.MatchesToProcess)
@@ -113,27 +112,35 @@ namespace MatchWorthWatchingService
 						//all to just get the full time score...
 						matchInProcess.Match = _getMatchScoreFromAPIStep.Execute(match);
 
-						if (matchInProcess.Match.Score != null)
+						if (matchInProcess.Match.Score == null)
 						{
-							matchInProcess.MatchStats = _getMatchStatsFromAPIStep.Execute(match);
+							_logger.LogMessage(string.Format("Processing failed with no match score on {0}", DateTime.Now));
+						}
 
-							if (matchInProcess.MatchStats != null)
-							{
-								matchInProcess.MatchInterest = _processMatchStatsStep.Execute(matchInProcess.MatchStats);
+						matchInProcess.MatchStats = _getMatchStatsFromAPIStep.Execute(match);
 
-								if (matchInProcess.MatchInterest != InterestLevel.Unknown)
-								{
-									matchInProcess.Tweet = _buildMatchTweetStep.Execute(matchInProcess);
+						if (matchInProcess.MatchStats == null)
+						{
+							_logger.LogMessage(string.Format("Processing completed with no match stats on {0}", DateTime.Now));
+						}
 
-									if (!string.IsNullOrEmpty(matchInProcess.Tweet))
-									{
-										if (_sendMatchTweetStep.Execute(matchInProcess))
-										{
-											_updateMatchTwitterStatusStep.Execute(matchInProcess);
-										}
-									}
-								}
-							}
+						matchInProcess.MatchInterest = _processMatchStatsStep.Execute(matchInProcess.MatchStats);
+
+						if (matchInProcess.MatchInterest == InterestLevel.Unknown)
+						{
+							_logger.LogMessage(string.Format("Processing failed with MatchInterest Unknown on {0}", DateTime.Now));
+						}
+
+						matchInProcess.Tweet = _buildMatchTweetStep.Execute(matchInProcess);
+
+						if (string.IsNullOrEmpty(matchInProcess.Tweet))
+						{
+							_logger.LogMessage(string.Format("Processing failed with emtpy Tweet on {0}", DateTime.Now));
+						}
+
+						if (_sendMatchTweetStep.Execute(matchInProcess))
+						{
+							_updateMatchTwitterStatusStep.Execute(matchInProcess);
 						}
 
 						sessionValues.ProcessedMatches.Add(matchInProcess);
